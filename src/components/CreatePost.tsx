@@ -7,6 +7,8 @@ import { Avatar, AvatarImage } from '@radix-ui/react-avatar'
 import { Textarea } from './ui/textarea'
 import { ImageIcon, Loader2Icon, SendIcon } from 'lucide-react'
 import { Button } from './ui/button'
+import { createPost } from '@/actions/post.action'
+import toast from 'react-hot-toast'
 
 const CreatePost = () => {
 
@@ -17,7 +19,22 @@ const CreatePost = () => {
     const [showImageUpload, setShowImageUpload] = useState(false)
 
     const handleSubmit = async () => {
+        if(!content.trim() && !imageUrl) return;
 
+        setIsPosting(true);
+        try {
+            const result = await createPost(content, imageUrl)
+            if(result.success) {
+                setContent("")
+                setImageUrl("")
+                setShowImageUpload(false)
+                toast.success("Post created successfully")
+            }
+        } catch (error) {
+            toast.error("Failed to create post")
+        } finally {
+            setIsPosting(false)
+        }
     }
 
     return (
