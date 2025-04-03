@@ -1,7 +1,7 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import { syncUser } from '@/actions/user.action'
+import { syncUser } from '@/actions/user.actions'
 
 export async function POST(req: Request) {
     const SIGNING_SECRET = process.env.SIGNING_SECRET
@@ -71,11 +71,6 @@ export async function POST(req: Request) {
             console.log(`User ${id} ${evt.type === "user.created" ? "created" : "updated"} in database.`);
         }
 
-        // if (evt.type === "user.deleted") {
-        //     const { id } = evt.data;
-        //     await deleteUser(id);
-        //     console.log(`User ${id} deleted from database.`);
-        // }
 
         return new Response("Webhook processed successfully", { status: 200 });
     } catch (error) {
