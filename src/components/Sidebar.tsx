@@ -9,25 +9,31 @@ import { currentUser } from "@clerk/nextjs/server";
 import { getUserByClerkId } from "@/actions/user.actions";
 
 async function Sidebar() {
-
-    const authUser = await currentUser()
-    if(!authUser) return <UnAuthenticatedSidebar />
+    const authUser = await currentUser();
+    if (!authUser) return <UnAuthenticatedSidebar />;
     // console.log("authUser:", authUser);
 
-    const  user = await getUserByClerkId(authUser.id)
+    // Fetch user from the database
+    let user = await getUserByClerkId(authUser.id);
     // console.log("user:", user);
-    if(!user) return null
 
+    // If user is not found, return a loading state or fallback UI
+    if (!user) {
+        return (
+            <Card className="p-4 text-center">
+                <p className="text-muted-foreground">Setting up your profile...</p>
+            </Card>
+        );
+    }
+
+    console.log("user:", user);
     return (
         <div className="sticky top-20">
             <Card>
                 <CardContent className="pt-6">
                     <div className="flex flex-col items-center text-center">
-                        <Link
-                            href={`/profile/${user.username}`}
-                            className="flex flex-col items-center justify-center"
-                        >
-                            <Avatar className="w-20 h-20 border-2 ">
+                        <Link href={`/profile/${user.username}`} className="flex flex-col items-center justify-center">
+                            <Avatar className="w-20 h-20 border-2">
                                 <AvatarImage src={user.image || "/avatar.png"} />
                             </Avatar>
 
@@ -78,7 +84,7 @@ async function Sidebar() {
     );
 }
 
-export default Sidebar;
+export default Sidebar
 
 const UnAuthenticatedSidebar = () => (
     <div className="sticky top-20">
