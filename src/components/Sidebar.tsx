@@ -26,7 +26,7 @@ async function Sidebar() {
         );
     }
 
-    console.log("user:", user);
+    // console.log("user:", user);
     return (
         <div className="sticky top-20">
             <Card>
