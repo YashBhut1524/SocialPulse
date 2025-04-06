@@ -11,6 +11,7 @@ import { notFound } from "next/navigation";
 export async function generateMetadata({ params }: { params: Promise<{ username: string }> }) {
 
     const username = (await params).username
+    // const authUser = currentUser()
     const user = await getProfileByUsername(username);
     if (!user) return;
 
@@ -24,8 +25,8 @@ async function ProfilePageServer({ params }: { params: Promise<{ username: strin
 
     const username = (await params).username
     const user = await getProfileByUsername(username);
-    const authUser = currentUser()
-
+    const authUser = await currentUser()
+    
     if (!user) notFound();
 
     const [posts, likedPosts, isCurrentUserFollowing] = await Promise.all([
@@ -36,7 +37,7 @@ async function ProfilePageServer({ params }: { params: Promise<{ username: strin
 
     return (
         <ProfilePageClient
-            authUser={authUser}
+            authUserId={authUser?.id}
             user={user}
             posts={posts}
             likedPosts={likedPosts}

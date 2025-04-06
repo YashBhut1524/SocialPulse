@@ -36,7 +36,7 @@ type Posts = Awaited<ReturnType<typeof getUserPosts>>;
 
 interface ProfilePageClientProps {
     user: NonNullable<User>;
-    authUser: NonNullable<User>;
+    authUserId: string | undefined | null;
     posts: Posts;
     likedPosts: Posts;
     isFollowing: boolean;
@@ -47,7 +47,7 @@ function ProfilePageClient({
     likedPosts,
     posts,
     user,
-    authUser
+    authUserId
 }: ProfilePageClientProps) {
     const { user: currentUser } = useUser();
     const [showEditDialog, setShowEditDialog] = useState(false);
@@ -60,9 +60,6 @@ function ProfilePageClient({
         location: user.location || "",
         website: user.website || "",
     });
-
-    console.log(user);
-    
 
     const handleEditSubmit = async () => {
         const formData = new FormData();
@@ -206,7 +203,7 @@ function ProfilePageClient({
                     <TabsContent value="posts" className="mt-6">
                         <div className="space-y-6">
                             {posts.length > 0 ? (
-                                posts.map((post) => <PostCard key={post.id} post={post} dbUserId={authUser.id} />)
+                                posts.map((post) => <PostCard key={post.id} post={post} dbUserId={authUserId} />)
                             ) : (
                                 <div className="text-center py-8 text-muted-foreground">No posts yet</div>
                             )}
