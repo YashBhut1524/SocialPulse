@@ -80,7 +80,7 @@ export async function getPosts() {
 }
 
 
-export const toggleLike = async (postId: string) => {
+export async function toggleLike(postId: string) {
     try {
         const userId = await getDbUserId();
         if (!userId) return;
@@ -103,7 +103,7 @@ export const toggleLike = async (postId: string) => {
         if (!post) throw new Error("Post not found");
 
         if (existingLike) {
-            // unlike the post
+            // unlike
             await prisma.like.delete({
                 where: {
                     userId_postId: {

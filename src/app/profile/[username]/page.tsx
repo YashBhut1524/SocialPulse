@@ -5,6 +5,7 @@ import {
     isFollowing,
 } from "@/actions/profile.action";
 import ProfilePageClient from "@/components/ProfilePageClient";
+import { currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }: { params: Promise<{ username: string }> }) {
@@ -23,6 +24,7 @@ async function ProfilePageServer({ params }: { params: Promise<{ username: strin
 
     const username = (await params).username
     const user = await getProfileByUsername(username);
+    const authUser = await currentUser()
 
     if (!user) notFound();
 
@@ -34,6 +36,7 @@ async function ProfilePageServer({ params }: { params: Promise<{ username: strin
 
     return (
         <ProfilePageClient
+            authUser={authUser}
             user={user}
             posts={posts}
             likedPosts={likedPosts}
