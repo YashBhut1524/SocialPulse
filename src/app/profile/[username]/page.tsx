@@ -4,8 +4,8 @@ import {
     getUserPosts,
     isFollowing,
 } from "@/actions/profile.action";
+import { getDbUserId } from "@/actions/user.actions";
 import ProfilePageClient from "@/components/ProfilePageClient";
-import { currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }: { params: Promise<{ username: string }> }) {
@@ -25,8 +25,8 @@ async function ProfilePageServer({ params }: { params: Promise<{ username: strin
 
     const username = (await params).username
     const user = await getProfileByUsername(username);
-    const authUser = await currentUser()
-    
+    const authUserDbId = await  getDbUserId()
+
     if (!user) notFound();
 
     const [posts, likedPosts, isCurrentUserFollowing] = await Promise.all([
@@ -37,7 +37,7 @@ async function ProfilePageServer({ params }: { params: Promise<{ username: strin
 
     return (
         <ProfilePageClient
-            authUserId={authUser?.id}
+            authUserId={authUserDbId}
             user={user}
             posts={posts}
             likedPosts={likedPosts}

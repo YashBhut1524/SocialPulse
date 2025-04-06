@@ -36,7 +36,7 @@ type Posts = Awaited<ReturnType<typeof getUserPosts>>;
 
 interface ProfilePageClientProps {
     user: NonNullable<User>;
-    authUserId: string | undefined | null;
+    authUserId: string | null;
     posts: Posts;
     likedPosts: Posts;
     isFollowing: boolean;
