@@ -24,7 +24,7 @@ async function ProfilePageServer({ params }: { params: Promise<{ username: strin
 
     const username = (await params).username
     const user = await getProfileByUsername(username);
-    const authUser = await currentUser()
+    const authUser = currentUser()
 
     if (!user) notFound();
 
