@@ -10,7 +10,7 @@ async function Navbar() {
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
                         <Link href="/" className="text-xl font-bold text-primary font-mono tracking-wider">
-                            Socially
+                            SocialPulse
                         </Link>
                     </div>
 

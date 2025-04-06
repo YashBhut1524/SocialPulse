@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+---
 
-## Getting Started
+# Social Pulse 🌐
 
-First, run the development server:
+A modern, full-stack **social media application** built with the latest technologies including **Next.js 15**, **Clerk** for authentication, **PostgreSQL** for the database, and **Prisma** as the ORM. Experience real-time features, responsive UI, and seamless user experience.
+
+### 🚀 Live Site
+👉 [social-pulse-psi.vercel.app](https://social-pulse-psi.vercel.app/)
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: [Next.js 15.2.4](https://nextjs.org/)
+- **Authentication**: [Clerk](https://clerk.dev/)
+- **Database**: [PostgreSQL](https://www.postgresql.org/)
+- **ORM**: [Prisma](https://www.prisma.io/)
+- **UI Components**: [Radix UI](https://www.radix-ui.com/), [Lucide Icons](https://lucide.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/), `tw-animate-css`, `clsx`
+- **File Uploads**: [UploadThing](https://uploadthing.com/)
+- **Toasts**: `react-hot-toast`
+- **Themes**: `next-themes`
+
+---
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/yourusername/social-pulse.git
+cd social-pulse
+npm install
+```
+
+🔗 **Important:** Set up the **Clerk Webhook** to sync user data.  
+📖 Refer to the official docs: [https://clerk.com/docs/webhooks/sync-data](https://clerk.com/docs/webhooks/sync-data)
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env` file and add the following:
+
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+
+SIGNING_SECRET=your_signing_secret
+
+DATABASE_URL=your_postgresql_connection_string
+
+UPLOADTHING_TOKEN=your_uploadthing_token
+```
+
+---
+
+## 🚧 Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📸 Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 🔐 User Authentication (Clerk)
+- 📄 User Profiles & Posts
+- ❤️ Like & Follow system
+- 📷 Image Uploads
+- 💬 Responsive UI
+- 🌗 Light/Dark Theme Support
+- 🔥 Realtime UX with Radix + UploadThing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🧠 Learnings & Highlights
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Integrated **Clerk** for seamless user onboarding using webhooks.
+- Implemented **server components** and used **RSC patterns** effectively with **Next.js 15**.
+- Managed **type safety** and **data fetching** using **Prisma** and TypeScript.
+- Deployed on **Vercel** for smooth CI/CD and preview deployments.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
