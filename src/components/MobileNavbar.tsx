@@ -10,11 +10,11 @@ import {
     UserIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
 import { useAuth, SignInButton, SignOutButton, SignUpButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 
 function MobileNavbar() {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
